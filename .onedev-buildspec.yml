@@ -9,7 +9,7 @@ jobs:
     interpreter:
       type: DefaultInterpreter
       commands: |
-        sleep 300
+        sleep 10
     runAs: 0:0
     useTTY: true
     condition: SUCCESSFUL
