@@ -1,0 +1,20 @@
+version: 48
+jobs:
+- name: ci
+  steps:
+  - type: CommandStep
+    name: build
+    runInContainer: true
+    image: alpine
+    interpreter:
+      type: DefaultInterpreter
+      commands: |
+        sleep 300
+    runAs: 0:0
+    useTTY: true
+    condition: SUCCESSFUL
+    optional: false
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
