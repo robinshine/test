@@ -4,8 +4,7 @@ jobs:
   steps:
   - type: PullRepository
     name: pull
-    remoteUrl: http://localhost:6610/test
-    userName: admin
+    remoteUrl: https://github.com/robinshine/test
     refs: refs/tags/*
     withLfs: false
     force: false
