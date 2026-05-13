@@ -6,8 +6,7 @@ jobs:
     name: pull
     remoteUrl: http://localhost:6610/test
     userName: admin
-    passwordSecret: access token
-    refs: refs/heads/* refs/tags/*
+    refs: refs/tags/*
     withLfs: false
     force: false
     condition: SUCCESSFUL
