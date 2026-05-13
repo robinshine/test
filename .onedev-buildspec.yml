@@ -11,6 +11,9 @@ jobs:
     force: false
     condition: SUCCESSFUL
     optional: false
+  triggers:
+  - type: ScheduleTrigger
+    cronExpression: 0 * * * * ?
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
