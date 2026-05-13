@@ -1,6 +1,6 @@
 version: 48
 jobs:
-- name: ci
+- name: pull
   steps:
   - type: PullRepository
     name: pull
@@ -11,6 +11,26 @@ jobs:
     force: false
     condition: SUCCESSFUL
     optional: false
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
+- name: post tag
+  steps:
+  - type: CommandStep
+    name: build
+    runInContainer: true
+    image: alpine
+    interpreter:
+      type: DefaultInterpreter
+      commands: |
+        echo @tag@ is created
+    runAs: 0:0
+    useTTY: true
+    condition: SUCCESSFUL
+    optional: false
+  triggers:
+  - type: TagCreateTrigger
   retryCondition: never
   maxRetries: 3
   retryDelay: 30
