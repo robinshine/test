@@ -2,16 +2,14 @@ version: 48
 jobs:
 - name: ci
   steps:
-  - type: CommandStep
-    name: build
-    runInContainer: true
-    image: alpine
-    interpreter:
-      type: DefaultInterpreter
-      commands: |
-        sleep 10
-    runAs: 0:0
-    useTTY: true
+  - type: PullRepository
+    name: pull
+    remoteUrl: http://localhost:6610/test
+    userName: admin
+    passwordSecret: access token
+    refs: refs/heads/* refs/tags/*
+    withLfs: false
+    force: false
     condition: SUCCESSFUL
     optional: false
   retryCondition: never
