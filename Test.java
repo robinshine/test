@@ -160,10 +160,6 @@ public class OneDev extends AbstractPlugin implements Serializable, Runnable {
 
 		var manualConfigs = checkData();
 		if (!manualConfigs.isEmpty()) {
-			if (getIngressUrl() != null)
-				logger.warn("Please set up the server at " + getIngressUrl());
-			else
-				logger.warn("Please set up the server at " + guessServerUrl());
 			initStage = new InitStage("Server Setup", manualConfigs);
 			var localServer = clusterService.getLocalServerAddress();
 			while (true) {
