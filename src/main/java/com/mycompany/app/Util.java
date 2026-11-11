@@ -1,5 +1,8 @@
 package com.mycompany.app;
 
+/* 
+ * This is a utility class
+ */
 public class Util
 {
     public static int add(int num1, int num2) 
