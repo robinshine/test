@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Run build.sh
+        run: bash build.sh
+
+      - name: Annotate Checkstyle findings
+        if: ${{ !cancelled() && hashFiles('target/checkstyle-result.xml') != '' }}
+        run: python3 .github/scripts/annotate-checkstyle.py target/checkstyle-result.xml
+
+      - name: Publish Checkstyle report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: checkstyle-report
+          path: |
+            target/site/
+            target/checkstyle-result.xml
+          if-no-files-found: error
