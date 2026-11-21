@@ -1,1 +1,1 @@
-Expose latency through the API3
+Expose latency through the API6
