@@ -1,0 +1,1 @@
+Expose latency through the API2
